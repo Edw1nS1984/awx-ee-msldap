@@ -1,0 +1,26 @@
+---
+version: 3
+images:
+  base_image:
+    name: docker.io/redhat/ubi9:latest
+options:
+  tags:
+    - awx-ee-msldap:2.2
+dependencies:
+  python_interpreter:
+    package_system: python3
+    python_path: /usr/bin/python3
+  ansible_core:
+    # Require minimum of 2.15 to get ansible-inventory --limit option
+    package_pip: ansible-core>=2.12.0rc2
+  ansible_runner:
+    package_pip: ansible-runner
+  python:
+    - sansldap
+    - pyspnego
+    - dnspython
+    - pyspnego
+    - dpapi-ng
+additional_build_steps:
+  prepend_base:
+    - RUN $PKGMGR update
