@@ -36,7 +36,6 @@ jobs:
           pip-install: ansible-builder  
 
       - name: Build image
-        working-directory: ${{ $GITHUB_WORKSPACE }}
         run: |
           ansible-builder create -v 3 \
           --context=. \
